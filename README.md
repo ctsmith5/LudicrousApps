@@ -33,7 +33,25 @@ bun run preview
 - For Cloudflare Pages:
   - Build command: `bun run build`
   - Output directory: `dist`
-  - Use Cloudflare DNS (custom nameservers on Namecheap) for `ludicrousapps.io`.
+  - If your domain is registered on Cloudflare, DNS is already set up — just attach `ludicrousapps.io` in your Pages project’s Custom Domains.
+
+## Rummage Support ghost page
+
+This site includes a hidden support page for the iOS App Store listing:
+- `https://ludicrousapps.io/RummageSupport`
+
+It is **not linked** from the main site navigation, but is accessible via direct URL.
+
+### Email sending (Cloudflare Pages Functions + Resend)
+The support form POSTs to a Pages Function at:
+- `POST /api/rummage-support`
+
+To enable email sending, create a Resend API key and set these **Cloudflare Pages environment variables**:
+- `RESEND_API_KEY`: your Resend API key
+- `SUPPORT_TO_EMAIL`: `devcolin@icloud.com`
+- `SUPPORT_FROM_EMAIL`: a verified sender on Resend (example: `Rummage Support <support@ludicrousapps.io>`)
+
+If `RESEND_API_KEY` is not configured, the page will show an error and users can still contact you via a mailto fallback link.
 
 # React + TypeScript + Vite
 
