@@ -140,20 +140,9 @@ export function RummageSupport() {
               >
                 {status === "sending" ? "Sending…" : "Send"}
               </button>
-
-              <a
-                href={mailto}
-                className="text-sm font-semibold text-slate-700 hover:text-slate-900"
-              >
-                If needed, email directly →
-              </a>
             </div>
           </form>
         </div>
-
-        <p className="mt-6 text-center text-xs text-slate-500">
-          This page is intentionally not linked from the main site navigation.
-        </p>
       </div>
     </main>
   );
