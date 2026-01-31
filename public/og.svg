@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1080" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF2FF"/>
+      <stop offset="1" stop-color="#E0E7FF"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="380" y1="210" x2="820" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#3730A3"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1200" height="630" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1008" height="438" rx="40" fill="white" stroke="#E2E8F0" stroke-width="4"/>
+
+  <rect x="140" y="150" width="92" height="92" rx="24" fill="url(#brand)"/>
+  <path d="M168 214V170h16v32h38v12h-54z" fill="white" opacity="0.95"/>
+  <path d="M168 170h56v12h-40v32h-16V170z" fill="white" opacity="0.75"/>
+
+  <text x="260" y="214" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="56" font-weight="700" fill="#0F172A">LudicrousApps</text>
+  <text x="260" y="278" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="28" font-weight="500" fill="#334155">Fullstack Engineering</text>
+  <text x="260" y="340" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="24" font-weight="500" fill="#475569">Flutter • iOS • Go/C# • Google Cloud • MongoDB</text>
+</svg>
+
