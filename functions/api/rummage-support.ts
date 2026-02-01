@@ -23,7 +23,7 @@ function json(data: unknown, init?: ResponseInit) {
 
 export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   const resendKey = ctx.env.RESEND_API_KEY;
-  const to = ctx.env.SUPPORT_TO_EMAIL || "devcolin@icloud.com";
+  const to = ctx.env.SUPPORT_TO_EMAIL || "support@ludicrousapps.io";
   const from = ctx.env.SUPPORT_FROM_EMAIL || "Rummage Support <onboarding@resend.dev>";
 
   if (!isNonEmptyString(resendKey)) {

@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import rummageIcon from "../assets/appstore.png";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const SUPPORT_EMAIL = "devcolin@icloud.com";
+const SUPPORT_EMAIL = "support@ludicrousapps.io";
 const RUMMAGE_API_BASE_URL =
   "https://rummage-backend-287868745320.us-central1.run.app";
 const RUMMAGE_SUPPORT_ENDPOINT = `${RUMMAGE_API_BASE_URL}/api/support`;
