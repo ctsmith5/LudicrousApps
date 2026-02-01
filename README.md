@@ -42,16 +42,25 @@ This site includes a hidden support page for the iOS App Store listing:
 
 It is **not linked** from the main site navigation, but is accessible via direct URL.
 
-### Email sending (Cloudflare Pages Functions + Resend)
-The support form POSTs to a Pages Function at:
-- `POST /api/rummage-support`
+### Support API (Google Cloud Run)
+The support form POSTs to your backend:
+- `POST https://rummage-backend-287868745320.us-central1.run.app/api/support`
 
-To enable email sending, create a Resend API key and set these **Cloudflare Pages environment variables**:
-- `RESEND_API_KEY`: your Resend API key
-- `SUPPORT_TO_EMAIL`: `devcolin@icloud.com`
-- `SUPPORT_FROM_EMAIL`: a verified sender on Resend (example: `Rummage Support <support@ludicrousapps.io>`)
+Payload includes:
+- `name`
+- `email`
+- `message`
+- `recaptchaToken` (also sent as `gRecaptchaResponse` for compatibility)
 
-If `RESEND_API_KEY` is not configured, the page will show an error and users can still contact you via a mailto fallback link.
+Make sure your backend allows CORS from `https://ludicrousapps.io` (and supports `OPTIONS`).
+
+### reCAPTCHA v2 (checkbox)
+The client uses reCAPTCHA v2 checkbox.
+
+Set this **Cloudflare Pages environment variable** (Build & Deployments → Environment variables):
+- `VITE_RUMMAGE_RECAPTCHA_SITE_KEY`: your reCAPTCHA site key
+
+The secret key is verified server-side in your Cloud Run service.
 
 # React + TypeScript + Vite
 

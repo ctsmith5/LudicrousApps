@@ -1,7 +1,14 @@
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
+import rummageIcon from "../assets/appstore.png";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const SUPPORT_EMAIL = "devcolin@icloud.com";
+const RUMMAGE_API_BASE_URL =
+  "https://rummage-backend-287868745320.us-central1.run.app";
+const RUMMAGE_SUPPORT_ENDPOINT = `${RUMMAGE_API_BASE_URL}/api/support`;
+const RUMMAGE_RECAPTCHA_SITE_KEY =
+  import.meta.env.VITE_RUMMAGE_RECAPTCHA_SITE_KEY;
 
 function buildMailto(params: { name: string; email: string; message: string }) {
   const subject = `Rummage Support — ${params.name}`;
@@ -21,6 +28,7 @@ export function RummageSupport() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -39,13 +47,26 @@ export function RummageSupport() {
     if (!name.trim()) return setError("Please enter your name.");
     if (!email.trim()) return setError("Please enter your email.");
     if (!message.trim()) return setError("Please enter a message.");
+    if (!RUMMAGE_RECAPTCHA_SITE_KEY)
+      return setError(
+        "reCAPTCHA is not configured (missing site key). Please contact support via email link.",
+      );
+    if (!recaptchaToken)
+      return setError("Please complete the reCAPTCHA before sending.");
 
     setStatus("sending");
     try {
-      const res = await fetch("/api/rummage-support", {
+      const res = await fetch(RUMMAGE_SUPPORT_ENDPOINT, {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          recaptchaToken,
+          // Common alternate field name some backends expect:
+          gRecaptchaResponse: recaptchaToken,
+        }),
       });
 
       if (!res.ok) {
@@ -69,9 +90,13 @@ export function RummageSupport() {
       <div className="mx-auto max-w-2xl px-6 py-14 sm:py-20">
         <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-lg font-semibold text-white shadow-sm">
-              R
-            </div>
+            <img
+              src={rummageIcon}
+              alt="Rummage app icon"
+              className="h-12 w-12 rounded-2xl shadow-sm ring-1 ring-slate-200"
+              loading="eager"
+              decoding="async"
+            />
             <div>
               <h1 className="text-balance text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
                 Rummage Support
@@ -124,6 +149,20 @@ export function RummageSupport() {
               />
             </label>
 
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              {RUMMAGE_RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  sitekey={RUMMAGE_RECAPTCHA_SITE_KEY}
+                  onChange={(token: string | null) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              ) : (
+                <p className="text-sm text-slate-700">
+                  reCAPTCHA is not configured for this environment.
+                </p>
+              )}
+            </div>
+
             {error ? <p className="text-sm font-medium text-red-700">{error}</p> : null}
 
             {status === "sent" ? (
@@ -135,7 +174,12 @@ export function RummageSupport() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <button
                 type="submit"
-                disabled={status === "sending" || status === "sent"}
+                disabled={
+                  status === "sending" ||
+                  status === "sent" ||
+                  !recaptchaToken ||
+                  !RUMMAGE_RECAPTCHA_SITE_KEY
+                }
                 className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {status === "sending" ? "Sending…" : "Send"}
