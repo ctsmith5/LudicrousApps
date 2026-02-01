@@ -2,25 +2,21 @@ import { Footer } from "./components/Footer";
 import { NavBar } from "./components/NavBar";
 import { About } from "./sections/About";
 import { Contact } from "./sections/Contact";
-import { Hero2 } from "./sections/Hero2";
+import { Hero } from "./sections/Hero";
 import { Services } from "./sections/Services";
 import { TechStack } from "./sections/TechStack";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RummageSupport } from "./pages/RummageSupport";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
-    <BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
       <Routes>
         {/* Hidden support page: accessible by direct URL, but not linked from the site */}
         <Route
           path="/RummageSupport"
-          caseSensitive={false}
-          element={<RummageSupport />}
-        />
-        {/* Alias for common typo */}
-        <Route
-          path="/RummageSupprt"
           caseSensitive={false}
           element={<RummageSupport />}
         />
@@ -31,10 +27,10 @@ function App() {
         <Route
           path="/"
           element={
-            <div id="top" className="min-h-dvh bg-white">
+            <div id="top" className="min-h-dvh bg-white dark:bg-slate-950">
               <a
                 href="#content"
-                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow"
+                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow dark:focus:bg-slate-800 dark:focus:text-slate-100"
               >
                 Skip to content
               </a>
@@ -42,7 +38,7 @@ function App() {
               <NavBar />
 
               <main id="content">
-                <Hero2 />
+                <Hero />
                 <About />
                 <Services />
                 <TechStack />
@@ -54,7 +50,8 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

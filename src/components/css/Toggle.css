@@ -1,0 +1,74 @@
+/* The container - the track */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide the default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider track */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  /* The sliding thumb (the circle) */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  /* State: Checked (Background Color) - using brand color */
+  input:checked + .slider {
+    background-color: #6366f1; /* brand-500 */
+  }
+  
+  /* State: Checked (Thumb Position) */
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+
+  /* Icon on the thumb */
+  .slider-icon {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: .4s;
+    pointer-events: none;
+    color: #1e293b; /* Dark color for moon icon (when toggle is off/light mode) */
+    font-size: 14px;
+  }
+
+  /* Icon position and color when checked (dark mode) */
+  input:checked + .slider .slider-icon {
+    left: 30px;
+    color: #fbbf24; /* Light/yellow color for sun icon (when toggle is on/dark mode) */
+  }
