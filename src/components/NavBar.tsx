@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
 import { useTheme } from "../contexts/ThemeContext";
+import SchedulingButton from "./Calendly";
 
 type NavItem = {
   id: string;
@@ -16,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
-  
+
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setIsOpen(false);
@@ -28,8 +29,11 @@ export function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#top" className="group inline-flex items-center gap-2"> </a>
+        <a href="#top" className="group inline-flex items-center gap-2">
+          {" "}
+        </a>
         <nav className="hidden items-center gap-7 sm:flex" aria-label="Primary">
+          <SchedulingButton />
           {NAV_ITEMS.map((item) => (
             <a
               key={item.id}
@@ -39,7 +43,12 @@ export function NavBar() {
               {item.label}
             </a>
           ))}
-        <Toggle isOn={isDarkMode} handleToggle={toggleTheme} id="dark-mode" icons={["☾", "☀"]} />
+          <Toggle
+            isOn={isDarkMode}
+            handleToggle={toggleTheme}
+            id="dark-mode"
+            icons={["☾", "☀"]}
+          />
         </nav>
 
         <button
@@ -81,4 +90,3 @@ export function NavBar() {
     </header>
   );
 }
-
