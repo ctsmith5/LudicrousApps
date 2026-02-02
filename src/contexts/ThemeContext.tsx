@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 type Theme = "light" | "dark";
 
@@ -34,7 +40,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDarkMode: theme === "dark" }}>
+    <ThemeContext.Provider
+      value={{ theme, toggleTheme, isDarkMode: theme === "dark" }}
+    >
       {children}
     </ThemeContext.Provider>
   );
