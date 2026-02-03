@@ -24,11 +24,11 @@ const SchedulingButton: React.FC = () => {
     return <div>Error: Root element not found</div>;
   }
   return (
-    <div className="MySchedulingButton">
+    <div className="SchedulingButton">
       <PopupButton
         url={`https://calendly.com/colin-smith356/30min?back=1&month=${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, "0")}`}
         rootElement={rootElement}
-        text="Click here to schedule!"
+        text="Schedule a Meeting!"
         pageSettings={{
           backgroundColor: "ffffff",
           primaryColor: "00a2ff",

@@ -8,51 +8,54 @@ import { TechStack } from "./sections/TechStack";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RummageSupport } from "./pages/RummageSupport";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { useEffect } from "react";
+import CalendlyWidget from "./components/CalendlyWidget";
 
 function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-      <Routes>
-        {/* Hidden support page: accessible by direct URL, but not linked from the site */}
-        <Route
-          path="/RummageSupport"
-          caseSensitive={false}
-          element={<RummageSupport />}
-        />
-        {/* Lowercase variants (covers URL normalization / user typing) */}
-        <Route path="/rummagesupport" element={<RummageSupport />} />
-        <Route path="/rummagesupprt" element={<RummageSupport />} />
+        <Routes>
+          {/* Hidden support page: accessible by direct URL, but not linked from the site */}
+          <Route
+            path="/RummageSupport"
+            caseSensitive={false}
+            element={<RummageSupport />}
+          />
+          {/* Lowercase variants (covers URL normalization / user typing) */}
+          <Route path="/rummagesupport" element={<RummageSupport />} />
+          <Route path="/rummagesupprt" element={<RummageSupport />} />
 
-        <Route
-          path="/"
-          element={
-            <div id="top" className="min-h-dvh bg-white dark:bg-slate-950">
-              <a
-                href="#content"
-                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow dark:focus:bg-slate-800 dark:focus:text-slate-100"
-              >
-                Skip to content
-              </a>
+          <Route
+            path="/"
+            element={
+              <div id="top" className="min-h-dvh bg-white dark:bg-slate-950">
+                <a
+                  href="#content"
+                  className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow dark:focus:bg-slate-800 dark:focus:text-slate-100"
+                >
+                  Skip to content
+                </a>
 
-              <NavBar />
+                <NavBar />
 
-              <main id="content">
-                <Hero />
-                <About />
-                <Services />
-                <TechStack />
-                <Contact />
-              </main>
+                <main id="content">
+                  <Hero />
+                  <About />
+                  <CalendlyWidget />
+                  <Services />
+                  <TechStack />
+                  <Contact />
+                </main>
 
-              <Footer />
-            </div>
-          }
-        />
-      </Routes>
+                <Footer />
+              </div>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

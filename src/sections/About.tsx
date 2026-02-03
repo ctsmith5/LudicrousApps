@@ -1,21 +1,21 @@
-const LINKEDIN_URL = "https://www.linkedin.com/in/colintsmith";
+import PhotoStack from "../components/PhotoStack";
 
+const LINKEDIN_URL = "https://www.linkedin.com/in/colintsmith";
+import resumePdf from "../assets/ResumeColinSmithFull.pdf";
 export function About() {
   return (
     <section id="about" className="scroll-mt-24 py-14 sm:py-20">
       <div className="mx-auto max-w-5xl px-6">
         <div className="grid gap-10 sm:grid-cols-12 sm:items-start">
-          <div className="sm:col-span-5">
-            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">About</p>
-            <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-              Fullstack Engineering, end to end.
-            </h2>
-          </div>
-
           <div className="sm:col-span-7">
+            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">
+              About
+            </p>
+
             <p className="text-pretty text-base text-slate-600 dark:text-slate-300 sm:text-lg">
-              I'm Colin Smith — a Fullstack Engineer. I build
-              mobile apps, websites, and the backends behind them, and deploy them with solid cloud practices and secure data environments.
+              I'm Colin Smith — a Fullstack Engineer. I build mobile apps,
+              websites, and the backends behind them, and deploy them with solid
+              cloud practices and secure data environments.
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -48,16 +48,19 @@ export function About() {
                 View LinkedIn
               </a>
               <a
-                href="#contact"
-                className="text-sm font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+                href={resumePdf}
+                download="ColinSmith-Resume.pdf"
+                className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
               >
-                Or send a message →
+                Download Resume
               </a>
             </div>
+          </div>
+          <div className="sm:col-span-5">
+            <PhotoStack photoPath="src/assets/CS-275.jpg" />
           </div>
         </div>
       </div>
     </section>
   );
 }
-
