@@ -2,6 +2,7 @@ type Service = {
   title: string;
   description: string;
   highlights: string[];
+  imageUrls: string[];
 };
 
 const SERVICES: Service[] = [
@@ -10,24 +11,28 @@ const SERVICES: Service[] = [
     description:
       "Modern mobile experiences with great UX, fast iteration, and production-grade reliability.",
     highlights: ["Flutter", "Native iOS", "App performance", "Crash/analytics"],
+    imageUrls: [],
   },
   {
     title: "Backend + APIs",
     description:
       "APIs and services that are simple to operate, easy to extend, and built for scale.",
     highlights: ["Go", "C#", "Auth", "REST/GraphQL (as needed)"],
+    imageUrls: [],
   },
   {
     title: "Cloud delivery",
     description:
       "Deploy with confidence using sensible infrastructure, CI/CD, and observability.",
     highlights: ["Google Cloud", "CI/CD", "Logging/metrics", "Cost awareness"],
+    imageUrls: [],
   },
   {
     title: "Data systems",
     description:
       "Choose the right data model and keep it healthy as your product grows.",
     highlights: ["MongoDB", "Schema design", "Migrations", "Indexing"],
+    imageUrls: [],
   },
 ];
 
@@ -37,7 +42,9 @@ export function Services() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">Services</p>
+            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">
+              Services
+            </p>
             <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               What I build for clients
             </h2>
@@ -77,4 +84,3 @@ export function Services() {
     </section>
   );
 }
-

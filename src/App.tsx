@@ -1,6 +1,7 @@
 import { Footer } from "./components/Footer";
 import { NavBar } from "./components/NavBar";
 import { About } from "./sections/About";
+import { AppShowcase } from "./sections/AppShowcase";
 import { Contact } from "./sections/Contact";
 import { Hero } from "./sections/Hero";
 import { Services } from "./sections/Services";
@@ -41,7 +42,9 @@ function App() {
                 <main id="content">
                   <Hero />
                   <About />
+                  <AppShowcase />
                   <CalendlyWidget />
+
                   <Services />
                   <TechStack />
                   <Contact />

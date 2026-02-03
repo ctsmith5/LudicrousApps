@@ -38,16 +38,27 @@ export function About() {
                 </p>
               </div>
             </div>
-
+            <script
+              src="https://platform.linkedin.com/badges/js/profile.js"
+              async
+              defer
+              type="text/javascript"
+            ></script>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
+              <div
+                className="badge-base LI-profile-badge"
+                data-locale="en_US"
+                data-size="medium"
+                data-theme="light"
+                data-type="HORIZONTAL"
+                data-vanity="colintsmith"
+                data-version="v1"
               >
-                View LinkedIn
-              </a>
+                <a
+                  className="badge-base__link LI-simple-link"
+                  href="https://www.linkedin.com/in/colintsmith?trk=profile-badge"
+                ></a>
+              </div>
               <a
                 href={resumePdf}
                 download="ColinSmith-Resume.pdf"
