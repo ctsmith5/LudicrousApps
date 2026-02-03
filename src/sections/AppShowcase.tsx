@@ -28,9 +28,9 @@ export function AppShowcase() {
           </h2>
         </div>
 
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-stretch">
+        <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
           {/* Banner */}
-          <div className="relative overflow-hidden rounded-2xl shadow-lg sm:w-2/3 lg:w-3/4">
+          <div className="relative overflow-hidden rounded-2xl shadow-lg sm:flex-1 lg:flex-none lg:w-[calc(100%-200px-1.5rem)]">
             {bannerUrl ? (
               <img
                 src={bannerUrl}
@@ -44,15 +44,15 @@ export function AppShowcase() {
             )}
           </div>
           {/* QR Code - Desktop only */}
-          <div className="relative hidden overflow-hidden rounded-2xl shadow-lg lg:block lg:w-1/4">
+          <div className="relative hidden overflow-hidden rounded-2xl shadow-lg lg:block lg:w-[200px] lg:h-[200px] lg:flex-shrink-0">
             {qrUrl ? (
               <img
                 src={qrUrl}
                 alt="Download QR Code"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             ) : (
-              <div className="flex h-full min-h-[200px] w-full items-center justify-center bg-slate-100 text-slate-400 dark:bg-slate-800">
+              <div className="flex h-full w-full items-center justify-center bg-slate-100 text-slate-400 dark:bg-slate-800">
                 Loading...
               </div>
             )}
