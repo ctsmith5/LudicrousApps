@@ -43,8 +43,7 @@ export function AppShowcase() {
               </div>
             )}
           </div>
-
-          {/* QR Code */}
+          Í{/* QR Code */}
           <div className="relative overflow-hidden rounded-2xl shadow-lg sm:w-1/3">
             {qrUrl ? (
               <img
@@ -58,7 +57,6 @@ export function AppShowcase() {
               </div>
             )}
           </div>
-
           {/* Mobile Download Link */}
           <a
             href="https://apple.co/4rm6Lw0"
