@@ -30,7 +30,7 @@ export function AppShowcase() {
 
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-stretch">
           {/* Banner */}
-          <div className="relative overflow-hidden rounded-2xl shadow-lg sm:w-2/3">
+          <div className="relative overflow-hidden rounded-2xl shadow-lg sm:w-2/3 lg:w-3/4">
             {bannerUrl ? (
               <img
                 src={bannerUrl}
@@ -43,8 +43,8 @@ export function AppShowcase() {
               </div>
             )}
           </div>
-          Í{/* QR Code */}
-          <div className="relative overflow-hidden rounded-2xl shadow-lg sm:w-1/3">
+          {/* QR Code - Desktop only */}
+          <div className="relative hidden overflow-hidden rounded-2xl shadow-lg lg:block lg:w-1/4">
             {qrUrl ? (
               <img
                 src={qrUrl}
@@ -57,12 +57,15 @@ export function AppShowcase() {
               </div>
             )}
           </div>
-          {/* Mobile Download Link */}
+        </div>
+
+        {/* Mobile Download Link - Mobile only */}
+        <div className="mt-6 lg:hidden">
           <a
             href="https://apple.co/4rm6Lw0"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-700 sm:hidden"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-700"
           >
             Download on the App Store
           </a>
