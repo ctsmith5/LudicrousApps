@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../lib/firebase";
 
 interface PhotoStackProps {
   photoPath: string;
@@ -11,15 +13,45 @@ const PhotoStack: React.FC<PhotoStackProps> = ({
   title,
   subtitle,
 }) => {
+  const [imageSrc, setImageSrc] = useState<string>("");
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      // If it's a web URL or local path, just use it
+      if (
+        photoPath.startsWith("http") ||
+        photoPath.startsWith("src/") ||
+        photoPath.startsWith("/")
+      ) {
+        setImageSrc(photoPath);
+        return;
+      }
+
+      // Otherwise try to fetch from Firebase Storage
+      try {
+        const pathReference = ref(storage, photoPath);
+        const url = await getDownloadURL(pathReference);
+        setImageSrc(url);
+      } catch (error) {
+        console.error("Error fetching image from Firebase:", error);
+        // Fallback or leave empty
+      }
+    };
+
+    fetchImage();
+  }, [photoPath]);
+
   return (
     // 1. Container: Sets the stage. 'relative' allows us to position children absolutely within it.
     <div className="group relative w-full h-[400px] overflow-hidden rounded-2xl shadow-md">
       {/* 2. The Image: background, rounded corners come from parent overflow-hidden */}
-      <img
-        src={photoPath}
-        alt={title || "Photo"}
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt={title || "Photo"}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      )}
 
       {/* 3. The Callout Box: Absolute position places it ON TOP of the image */}
       {title && subtitle && (

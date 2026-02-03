@@ -57,7 +57,7 @@ export function About() {
             </div>
           </div>
           <div className="sm:col-span-5">
-            <PhotoStack photoPath="src/assets/CS-275.jpg" />
+            <PhotoStack photoPath="CS-275.jpg" />
           </div>
         </div>
       </div>

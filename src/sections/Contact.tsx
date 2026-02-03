@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
 
-const CONTACT_EMAIL = "hello@ludicrousapps.io";
+const CONTACT_EMAIL = "requests@ludicrousapps.io";
 const LINKEDIN_URL = "https://www.linkedin.com/in/colintsmith";
 
 function buildMailto(params: { name: string; email: string; message: string }) {
@@ -26,11 +26,10 @@ export function Contact() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const mailto = useMemo(() => buildMailto({ name, email, message }), [
-    name,
-    email,
-    message,
-  ]);
+  const mailto = useMemo(
+    () => buildMailto({ name, email, message }),
+    [name, email, message],
+  );
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -48,7 +47,9 @@ export function Contact() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="grid gap-10 sm:grid-cols-12 sm:items-start">
           <div className="sm:col-span-5">
-            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">Contact</p>
+            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">
+              Contact
+            </p>
             <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
               Let's build something.
             </h2>
@@ -59,13 +60,20 @@ export function Contact() {
 
             <div className="mt-6 space-y-3 text-sm text-slate-700 dark:text-slate-300">
               <p>
-                <span className="font-semibold text-slate-900 dark:text-slate-100">Email:</span>{" "}
-                <a className="underline hover:text-slate-900 dark:hover:text-slate-100" href={mailto}>
+                <span className="font-semibold text-slate-900 dark:text-slate-100">
+                  Email:
+                </span>{" "}
+                <a
+                  className="underline hover:text-slate-900 dark:hover:text-slate-100"
+                  href={mailto}
+                >
                   {CONTACT_EMAIL}
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-slate-900 dark:text-slate-100">LinkedIn:</span>{" "}
+                <span className="font-semibold text-slate-900 dark:text-slate-100">
+                  LinkedIn:
+                </span>{" "}
                 <a
                   className="underline hover:text-slate-900 dark:hover:text-slate-100"
                   href={LINKEDIN_URL}
@@ -123,7 +131,9 @@ export function Contact() {
                 </label>
 
                 {error ? (
-                  <p className="text-sm font-medium text-red-700 dark:text-red-400">{error}</p>
+                  <p className="text-sm font-medium text-red-700 dark:text-red-400">
+                    {error}
+                  </p>
                 ) : null}
 
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -149,4 +159,3 @@ export function Contact() {
     </section>
   );
 }
-
