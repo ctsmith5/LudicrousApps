@@ -8,7 +8,6 @@ import { TechStack } from "./sections/TechStack";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RummageSupport } from "./pages/RummageSupport";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { useEffect } from "react";
 import CalendlyWidget from "./components/CalendlyWidget";
 
 function App() {

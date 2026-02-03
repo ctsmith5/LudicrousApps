@@ -1,4 +1,5 @@
 import PhotoStack from "../components/PhotoStack";
+import DocumentIcon from "../assets/document.svg";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/colintsmith";
 import resumePdf from "../assets/ResumeColinSmithFull.pdf";
@@ -50,8 +51,9 @@ export function About() {
               <a
                 href={resumePdf}
                 download="ColinSmith-Resume.pdf"
-                className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
               >
+                <img src={DocumentIcon} alt="" className="h-5 w-5 opacity-70" />
                 Download Resume
               </a>
             </div>
