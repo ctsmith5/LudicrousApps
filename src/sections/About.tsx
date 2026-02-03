@@ -1,7 +1,6 @@
 import PhotoStack from "../components/PhotoStack";
 import DocumentIcon from "../assets/document.svg";
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/colintsmith";
 import resumePdf from "../assets/ResumeColinSmithFull.pdf";
 export function About() {
   return (
