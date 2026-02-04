@@ -79,31 +79,28 @@ export function AppShowcase() {
         {/* Android Testing Section */}
         <div className="mt-16">
           <div className="mb-10 text-center sm:text-left">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
-              Calling all Android Testers!
-            </h2>
+            <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
+              {/* Android Logo */}
+              {androidUrl ? (
+                <img
+                  src={androidUrl}
+                  alt="Android Logo"
+                  className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+                />
+              ) : (
+                <div className="h-10 w-10 sm:h-12 sm:w-12 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+                  <div className="text-xs text-slate-400">...</div>
+                </div>
+              )}
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
+                Calling all Android Testers!
+              </h2>
+            </div>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
               Rummage is currently in Alpha testing on Android and help is
               greatly appreciated with testing and feedback. Click the link to
               join the test!
             </p>
-          </div>
-
-          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-            {/* Android Image */}
-            <div className="relative overflow-hidden rounded-2xl shadow-lg sm:flex-1 lg:flex-none lg:w-[calc(100%-200px-1.5rem)]">
-              {androidUrl ? (
-                <img
-                  src={androidUrl}
-                  alt="Android App Showcase"
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-64 w-full items-center justify-center bg-slate-100 text-slate-400 dark:bg-slate-800">
-                  Loading...
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Android Testing Link */}
