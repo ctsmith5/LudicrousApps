@@ -5,6 +5,7 @@ import { storage } from "../lib/firebase";
 export function AppShowcase() {
   const [bannerUrl, setBannerUrl] = useState("");
   const [qrUrl, setQrUrl] = useState("");
+  const [androidUrl, setAndroidUrl] = useState("");
 
   useEffect(() => {
     getDownloadURL(ref(storage, "Landscape Banner Ad - 1200x720.png"))
@@ -14,6 +15,10 @@ export function AppShowcase() {
     getDownloadURL(ref(storage, "qr-code.png"))
       .then(setQrUrl)
       .catch((e) => console.error("Failed to load QR", e));
+
+    getDownloadURL(ref(storage, "android_14191.png"))
+      .then(setAndroidUrl)
+      .catch((e) => console.error("Failed to load Android image", e));
   }, []);
 
   return (
@@ -69,6 +74,49 @@ export function AppShowcase() {
           >
             Download on the App Store
           </a>
+        </div>
+
+        {/* Android Testing Section */}
+        <div className="mt-16">
+          <div className="mb-10 text-center sm:text-left">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
+              Calling all Android Testers!
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
+              Rummage is currently in Alpha testing on Android and help is
+              greatly appreciated with testing and feedback. Click the link to
+              join the test!
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
+            {/* Android Image */}
+            <div className="relative overflow-hidden rounded-2xl shadow-lg sm:flex-1 lg:flex-none lg:w-[calc(100%-200px-1.5rem)]">
+              {androidUrl ? (
+                <img
+                  src={androidUrl}
+                  alt="Android App Showcase"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-64 w-full items-center justify-center bg-slate-100 text-slate-400 dark:bg-slate-800">
+                  Loading...
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Android Testing Link */}
+          <div className="mt-6">
+            <a
+              href="https://play.google.com/apps/testing/com.rummageapps.rummage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800"
+            >
+              Join Android Alpha Testing
+            </a>
+          </div>
         </div>
       </div>
     </section>
