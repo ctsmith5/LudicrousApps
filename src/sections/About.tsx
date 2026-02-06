@@ -1,7 +1,7 @@
 import PhotoStack from "../components/PhotoStack";
 import DocumentIcon from "../assets/document.svg";
 
-import resumePdf from "../assets/ResumeColinSmithFull.pdf";
+import resumePdf from "src/assets/ResumeColinSmith_Feb-2026.pdf";
 export function About() {
   return (
     <section id="about" className="scroll-mt-24 py-14 sm:py-20">
@@ -60,7 +60,7 @@ export function About() {
               </div>
               <a
                 href={resumePdf}
-                download="ColinSmith-Resume.pdf"
+                download="ColinSmith_Resume_Feb-2026.pdf"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
               >
                 <img src={DocumentIcon} alt="" className="h-5 w-5 opacity-70" />
