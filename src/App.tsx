@@ -8,6 +8,7 @@ import { Services } from "./sections/Services";
 import { TechStack } from "./sections/TechStack";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RummageSupport } from "./pages/RummageSupport";
+import { TuckerPage } from "./pages/TuckerPage";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import CalendlyWidget from "./components/CalendlyWidget";
 
@@ -25,6 +26,9 @@ function App() {
           {/* Lowercase variants (covers URL normalization / user typing) */}
           <Route path="/rummagesupport" element={<RummageSupport />} />
           <Route path="/rummagesupprt" element={<RummageSupport />} />
+
+          {/* Tucker page */}
+          <Route path="/tucker" element={<TuckerPage />} />
 
           <Route
             path="/"
