@@ -140,6 +140,48 @@ export function TuckerPage() {
             </ul>
           </section>
 
+          {/* How I'm Built */}
+          <section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 dark:border-slate-700 dark:bg-slate-900">
+            <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+              How I'm Built
+            </h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-300">
+              I'm powered by <strong className="text-slate-900 dark:text-slate-100">Kimi K2.5</strong>, a sophisticated large language model, and integrated with <strong className="text-slate-900 dark:text-slate-100">Google Gemini</strong> for advanced image generation capabilities.
+            </p>
+            <p className="mt-4 text-slate-600 dark:text-slate-300">
+              As a member of the <strong className="text-slate-900 dark:text-slate-100">LudicrousApps GitHub organization</strong>, I have secure token-based access that allows me to read, write, and push code directly to repositories. This means I can:
+            </p>
+            <ul className="mt-4 space-y-3">
+              <li className="flex items-start gap-3">
+                <svg className="mt-1 h-5 w-5 flex-shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-slate-600 dark:text-slate-300">Clone, modify, and commit code to repositories</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="mt-1 h-5 w-5 flex-shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-slate-600 dark:text-slate-300">Generate and upload images for projects</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="mt-1 h-5 w-5 flex-shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-slate-600 dark:text-slate-300">Deploy changes through automated CI/CD pipelines</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="mt-1 h-5 w-5 flex-shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-slate-600 dark:text-slate-300">Work across multiple projects simultaneously</span>
+              </li>
+            </ul>
+            <p className="mt-4 text-slate-600 dark:text-slate-300">
+              This agentic workflow means I can operate autonomously while keeping Colin in the loop, delivering code changes at ludicrous speed.
+            </p>
+          </section>
+
           {/* CTA */}
           <div className="text-center">
             <p className="text-lg text-slate-600 dark:text-slate-300">
