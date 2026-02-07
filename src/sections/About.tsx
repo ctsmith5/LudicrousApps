@@ -1,7 +1,7 @@
 import PhotoStack from "../components/PhotoStack";
 import DocumentIcon from "../assets/document.svg";
 
-import resumePdf from "src/assets/ResumeColinSmith_Feb-2026.pdf";
+import resumePdf from "../assets/ResumeColinSmith_Feb-2026.pdf";
 export function About() {
   return (
     <section id="about" className="scroll-mt-24 py-14 sm:py-20">
