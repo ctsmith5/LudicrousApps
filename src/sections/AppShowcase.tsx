@@ -22,99 +22,114 @@ export function AppShowcase() {
   }, []);
 
   return (
-    <section id="showcase" className="scroll-mt-24 py-14 sm:py-20">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mb-10 text-center sm:text-left">
-          <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">
+    <section id="showcase" className="scroll-mt-24 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <p className="text-sm font-semibold uppercase tracking-wider text-purple-600 dark:text-cyan-400">
             App Showcase
           </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
-            Check out some of the apps already in production.
+          <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
+            Apps in Production
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
+            Real apps shipping to real users. Here's what I've built recently.
+          </p>
         </div>
 
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-          {/* Banner */}
-          <div className="relative overflow-hidden rounded-2xl shadow-lg sm:flex-1 lg:flex-none lg:w-[calc(100%-200px-1.5rem)]">
-            {bannerUrl ? (
-              <img
-                src={bannerUrl}
-                alt="App Showcase Banner"
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="flex h-64 w-full items-center justify-center bg-slate-100 text-slate-400 dark:bg-slate-800">
-                Loading...
-              </div>
-            )}
-          </div>
-          {/* QR Code - Desktop only */}
-          <div className="relative hidden overflow-hidden rounded-2xl shadow-lg lg:block lg:w-[200px] lg:h-[200px] lg:flex-shrink-0">
-            {qrUrl ? (
-              <img
-                src={qrUrl}
-                alt="Download QR Code"
-                className="h-full w-full object-contain"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-slate-100 text-slate-400 dark:bg-slate-800">
-                Loading...
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Download Link - Mobile only */}
-        <div className="mt-6 lg:hidden">
-          <a
-            href="https://apple.co/4rm6Lw0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-700"
-          >
-            Download on the App Store
-          </a>
-        </div>
-
-        {/* Android Testing Section */}
-        <div className="mt-16">
-          <div className="mb-10 text-center sm:text-left">
-            <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
-              {/* Android Logo */}
-              {androidUrl ? (
+        {/* Rummage App Card */}
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+          <div className="grid lg:grid-cols-2">
+            {/* Left - Banner */}
+            <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-900 lg:aspect-auto">
+              {bannerUrl ? (
                 <img
-                  src={androidUrl}
-                  alt="Android Logo"
-                  className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+                  src={bannerUrl}
+                  alt="Rummage App"
+                  className="h-full w-full object-cover"
                 />
               ) : (
-                <div className="h-10 w-10 sm:h-12 sm:w-12 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
-                  <div className="text-xs text-slate-400">...</div>
+                <div className="flex h-full items-center justify-center">
+                  <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
                 </div>
               )}
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
-                Calling all Android Testers!
-              </h2>
             </div>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-              Rummage is currently in Alpha testing on Android and help is
-              greatly appreciated with testing and feedback. Click the link to
-              join the test!
-            </p>
-          </div>
 
-          {/* Android Testing Link */}
-          <div className="mt-6">
-            <a
-              href="https://play.google.com/apps/testing/com.rummageapps.rummage"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800"
-            >
-              Join Android Alpha Testing
-            </a>
+            {/* Right - Content */}
+            <div className="flex flex-col justify-center p-8 lg:p-12">
+              <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 dark:bg-green-900/40 dark:text-green-300">
+                <span className="h-2 w-2 rounded-full bg-green-500" />
+                Live on App Store
+              </div>
+
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
+                Rummage
+              </h3>
+              <p className="mt-3 text-slate-600 dark:text-slate-300">
+                Discover local garage sales in your neighborhood. Browse listings, 
+                view photos, and navigate to sales near you. Built with Flutter for 
+                iOS and Android.
+              </p>
+
+              {/* Features */}
+              <ul className="mt-6 space-y-2">
+                {[
+                  "Real-time listings with Firebase",
+                  "Image upload and moderation",
+                  "Location-based search",
+                  "Cross-platform (iOS & Android)",
+                ].map((feature) => (
+                  <li key={feature} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                    <svg className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Download buttons */}
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="https://apple.co/4rm6Lw0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                  </svg>
+                  Download on App Store
+                </a>
+                <a
+                  href="https://play.google.com/apps/testing/com.rummageapps.rummage"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-green-600 bg-transparent px-5 py-3 text-sm font-semibold text-green-600 transition-all hover:bg-green-50 dark:hover:bg-green-900/20"
+                >
+                  {androidUrl ? (
+                    <img src={androidUrl} alt="" className="h-5 w-5" />
+                  ) : null}
+                  Join Android Alpha
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* QR Code Section - Desktop */}
+        {qrUrl && (
+          <div className="mt-8 hidden rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-slate-700 dark:bg-slate-800 lg:block">
+            <p className="mb-4 text-sm font-medium text-slate-600 dark:text-slate-300">
+              Scan to download Rummage
+            </p>
+            <img
+              src={qrUrl}
+              alt="Download QR Code"
+              className="mx-auto h-40 w-40 rounded-xl"
+            />
+          </div>
+        )}
       </div>
     </section>
   );

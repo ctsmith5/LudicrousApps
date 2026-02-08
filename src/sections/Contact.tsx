@@ -86,16 +86,31 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 py-14 sm:py-20">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="grid gap-10 sm:grid-cols-12 sm:items-start">
-          <div className="sm:col-span-5">
-            <p className="text-sm font-semibold text-brand-700 dark:text-brand-400">
-              Contact
-            </p>
-            <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
-              Let's build something.
-            </h2>
+    <section id="contact" className="scroll-mt-24 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <p className="text-sm font-semibold uppercase tracking-wider text-purple-600 dark:text-cyan-400">
+            Contact
+          </p>
+          <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
+            Let's Build Something
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
+            Have a project in mind? I'd love to hear about it. Send me a message 
+            and let's discuss how we can work together.
+          </p>
+        </div>
+
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-5">
+            <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-purple-50 to-cyan-50 p-8 dark:border-slate-700 dark:from-purple-900/20 dark:to-cyan-900/20">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+                Get in Touch
+              </h3>
+              <p className="mt-2 text-slate-600 dark:text-slate-300">
+                Prefer email? Reach out directly and I'll respond within 24 hours.
+              </p>
             <p className="mt-3 text-pretty text-sm text-slate-600 dark:text-slate-300 sm:text-base">
               Share what you're building and I'll reply with questions, a
               suggested approach, and a realistic timeline.
