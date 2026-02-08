@@ -23,8 +23,10 @@ const CHROMATIC_ABERRATION_OFFSET = 0.0015;
 export function WarpScene() {
   const meshRef = useRef<THREE.InstancedMesh | null>(null);
   const effectsRef = useRef<ChromaticAberrationEffect | null>(null);
+  const resetTimerRef = useRef<number>(0);
 
-  useEffect(() => {
+  // Function to initialize/reset star positions
+  const initializeStars = () => {
     if (!meshRef.current) return;
 
     // Ensure per-instance colors exist. Default to white so stars are visible.
@@ -45,6 +47,10 @@ export function WarpScene() {
       meshRef.current.setMatrixAt(j++, t.matrix);
     }
     meshRef.current.instanceMatrix.needsUpdate = true;
+  };
+
+  useEffect(() => {
+    initializeStars();
   }, []);
 
   const temp = new THREE.Matrix4();
@@ -54,6 +60,14 @@ export function WarpScene() {
 
   useFrame((_, delta) => {
     if (!meshRef.current) return;
+
+    // Periodic reset to prevent animation from getting into a bad state
+    resetTimerRef.current += delta;
+    if (resetTimerRef.current >= 25) {
+      resetTimerRef.current = 0;
+      initializeStars();
+      return; // Skip this frame after reset
+    }
 
     // Optional: enable for a subtle spiral roll
     // state.camera.rotation.z += delta * 0.15;
