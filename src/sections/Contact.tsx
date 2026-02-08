@@ -143,6 +143,7 @@ export function Contact() {
               </p>
             </div>
           </div>
+          </div>
 
           <div className="sm:col-span-7">
             <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
