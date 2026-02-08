@@ -1,8 +1,13 @@
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
-const CONTACT_EMAIL = "requests@ludicrousapps.io";
+const CONTACT_EMAIL = "support@ludicrousapps.io";
 const LINKEDIN_URL = "https://www.linkedin.com/in/colintsmith";
+const API_BASE_URL =
+  "https://rummage-backend-287868745320.us-central1.run.app";
+const CONTACT_ENDPOINT = `${API_BASE_URL}/api/support`;
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RUMMAGE_RECAPTCHA_SITE_KEY;
 
 function buildMailto(params: { name: string; email: string; message: string }) {
   const subject = `Project inquiry — ${params.name}`;
@@ -24,6 +29,10 @@ export function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
   const [error, setError] = useState<string | null>(null);
 
   const mailto = useMemo(
@@ -31,15 +40,49 @@ export function Contact() {
     [name, email, message],
   );
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
 
     if (!name.trim()) return setError("Please enter your name.");
     if (!email.trim()) return setError("Please enter your email.");
     if (!message.trim()) return setError("Please enter a short message.");
+    if (!RECAPTCHA_SITE_KEY)
+      return setError(
+        "reCAPTCHA is not configured (missing site key). Please contact support via email link.",
+      );
+    if (!recaptchaToken)
+      return setError("Please complete the reCAPTCHA before sending.");
 
-    window.location.href = mailto;
+    setStatus("sending");
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          recaptchaToken,
+          // Common alternate field name some backends expect:
+          gRecaptchaResponse: recaptchaToken,
+        }),
+      });
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => "");
+        throw new Error(text || `Request failed (${res.status})`);
+      }
+
+      setStatus("sent");
+    } catch (err) {
+      // Fallback: allow users to still contact via mailto if API isn't configured.
+      setStatus("error");
+      setError(
+        "Could not send automatically right now. Please use the email link below.",
+      );
+      console.error(err);
+    }
   }
 
   return (
@@ -130,18 +173,44 @@ export function Contact() {
                   />
                 </label>
 
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-600 dark:bg-slate-700">
+                  {RECAPTCHA_SITE_KEY ? (
+                    <ReCAPTCHA
+                      sitekey={RECAPTCHA_SITE_KEY}
+                      onChange={(token: string | null) => setRecaptchaToken(token)}
+                      onExpired={() => setRecaptchaToken(null)}
+                    />
+                  ) : (
+                    <p className="text-sm text-slate-700 dark:text-slate-300">
+                      reCAPTCHA is not configured for this environment.
+                    </p>
+                  )}
+                </div>
+
                 {error ? (
                   <p className="text-sm font-medium text-red-700 dark:text-red-400">
                     {error}
                   </p>
                 ) : null}
 
+                {status === "sent" ? (
+                  <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800 dark:border-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300">
+                    Message sent. Thank you!
+                  </p>
+                ) : null}
+
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-brand-600 dark:hover:bg-brand-700"
+                    disabled={
+                      status === "sending" ||
+                      status === "sent" ||
+                      !recaptchaToken ||
+                      !RECAPTCHA_SITE_KEY
+                    }
+                    className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-brand-600 dark:hover:bg-brand-700"
                   >
-                    Send message
+                    {status === "sending" ? "Sending…" : "Send message"}
                   </button>
 
                   <a
