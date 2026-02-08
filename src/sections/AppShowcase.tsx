@@ -102,14 +102,22 @@ export function AppShowcase() {
                   Download on App Store
                 </a>
                 <a
+                  href="https://play.google.com/store/apps/details?id=com.rummageapps.rummage"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-green-600 to-green-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-green-500/25 transition-all hover:shadow-green-500/40"
+                >
+                  {androidUrl ? (
+                    <img src={androidUrl} alt="" className="h-5 w-5" />
+                  ) : null}
+                  Download Latest Build
+                </a>
+                <a
                   href="https://play.google.com/apps/testing/com.rummageapps.rummage"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-green-600 bg-transparent px-5 py-3 text-sm font-semibold text-green-600 transition-all hover:bg-green-50 dark:hover:bg-green-900/20"
                 >
-                  {androidUrl ? (
-                    <img src={androidUrl} alt="" className="h-5 w-5" />
-                  ) : null}
                   Join Android Alpha
                 </a>
               </div>
