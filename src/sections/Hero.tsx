@@ -18,9 +18,8 @@ export function Hero() {
           <WarpScene />
         </Canvas>
         
-        {/* Gradient overlays for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent dark:from-slate-900/90 dark:via-slate-900/70 dark:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/80 dark:from-slate-900/50 dark:via-transparent dark:to-slate-900/80" />
+        {/* Gradient overlays for readability - only behind text area */}
+        <div className="absolute left-0 top-0 h-full w-full max-w-3xl bg-gradient-to-r from-white/95 via-white/80 to-transparent dark:from-slate-900/95 dark:via-slate-900/80 dark:to-transparent" />
       </div>
 
       {/* Content on top */}
