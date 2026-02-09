@@ -17,26 +17,20 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first, then default to dark
-    const saved = localStorage.getItem("theme") as Theme | null;
-    return saved || "dark";
-  });
+  // Force dark mode permanently
+  const [theme] = useState<Theme>("dark");
 
   useEffect(() => {
-    // Apply theme to document root
+    // Always apply dark mode to document root
     const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    // Save to localStorage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    root.classList.add("dark");
+    // Clear any old theme preference from localStorage
+    localStorage.removeItem("theme");
+  }, []);
 
+  // No-op toggle since theme is permanently dark
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    // Theme is locked to dark mode
   };
 
   return (
