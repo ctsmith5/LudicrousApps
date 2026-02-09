@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import Toggle from "./Toggle";
-import { useTheme } from "../contexts/ThemeContext";
 import SchedulingButton from "./Calendly";
 
 type NavItem = {
@@ -17,7 +15,6 @@ const NAV_ITEMS: NavItem[] = [
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -53,12 +50,6 @@ export function NavBar() {
           ))}
           <div className="h-6 w-px bg-slate-200 dark:bg-slate-700" />
           <SchedulingButton />
-          <Toggle
-            isOn={isDarkMode}
-            handleToggle={toggleTheme}
-            id="dark-mode"
-            icons={["☾", "☀"]}
-          />
         </nav>
 
         <button
