@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { storage } from "../lib/firebase";
+import { ref, getDownloadURL } from "firebase/storage";
 import SchedulingButton from "./Calendly";
 
 type NavItem = {
@@ -15,6 +17,7 @@ const NAV_ITEMS: NavItem[] = [
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string>("");
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -24,12 +27,25 @@ export function NavBar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  useEffect(() => {
+    async function fetchLogo() {
+      try {
+        const logoRef = ref(storage, "PathwayEdu/LudicrousLogo.png");
+        const url = await getDownloadURL(logoRef);
+        setLogoUrl(url);
+      } catch (error) {
+        console.error("Error fetching logo from Firebase:", error);
+      }
+    }
+    fetchLogo();
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-900/90">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#top" className="group inline-flex items-center gap-3">
           <img
-            src="https://storage.googleapis.com/ludicrousapps-c1ea7.firebasestorage.app/PathwayEdu/LudicrousLogo.png"
+            src={logoUrl}
             alt="LudicrousApps"
             className="h-10 w-auto"
           />
