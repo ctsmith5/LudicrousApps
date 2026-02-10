@@ -6,6 +6,7 @@ import { Contact } from "./sections/Contact";
 import { Hero } from "./sections/Hero";
 import { Services } from "./sections/Services";
 import { TechStack } from "./sections/TechStack";
+import { Workflow } from "./sections/Workflow";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RummageSupport } from "./pages/RummageSupport";
 import { TuckerPage } from "./pages/TuckerPage";
@@ -46,6 +47,7 @@ function App() {
                 <main id="content">
                   <Hero />
                   <About />
+                  <Workflow />
                   <AppShowcase />
                   <CalendlyWidget />
 
