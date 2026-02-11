@@ -16,7 +16,7 @@ export function Workflow() {
         </div>
 
         {/* Workflow Diagram */}
-        <div className="mb-16 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+        {/* <div className="mb-16 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
           <div className="aspect-video w-full">
             <iframe
               src="https://lucid.app/lucidchart/06ad933d-2c4d-4a67-af80-5f9b21e27831/edit?viewport_loc=-11%2C-11%2C1482%2C832&invitationId=inv_2955c2b9-f9a1-403c-9cae-56fa024d46cd"
@@ -25,7 +25,7 @@ export function Workflow() {
               allowFullScreen
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Workflow Steps */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
