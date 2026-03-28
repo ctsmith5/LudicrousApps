@@ -10,6 +10,7 @@ import { Workflow } from "./sections/Workflow";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RummageSupport } from "./pages/RummageSupport";
 import { TuckerPage } from "./pages/TuckerPage";
+import { GoogleOAuthCallback } from "./pages/GoogleOAuthCallback";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import CalendlyWidget from "./components/CalendlyWidget";
 
@@ -30,6 +31,9 @@ function App() {
 
           {/* Tucker page */}
           <Route path="/tucker" element={<TuckerPage />} />
+
+          {/* Google OAuth callback */}
+          <Route path="/api/auth/callback/google" element={<GoogleOAuthCallback />} />
 
           <Route
             path="/"
