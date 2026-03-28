@@ -73,15 +73,15 @@
         } else if (code) {
             resultDiv.innerHTML = `
                 <h2 class="success">✅ Authorization Successful!</h2>
-                <p>Copy this authorization code and paste it to Tucker:</p>
+                <p>Copy this authorization code and paste it into your app:</p>
                 <div class="code-box" id="authCode">${code}</div>
                 <button onclick="copyCode()">📋 Copy to Clipboard</button>
                 <div class="instructions">
                     <strong>Next Steps:</strong>
                     <ol>
                         <li>Click "Copy to Clipboard" above</li>
-                        <li>Go back to Telegram</li>
-                        <li>Paste the code to Tucker</li>
+                        <li>Go back to your app</li>
+                        <li>Paste the authorization code when prompted</li>
                     </ol>
                 </div>
             `;
